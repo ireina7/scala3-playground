@@ -1,12 +1,19 @@
 ## My personal playground of Scala3!
 
 ### Feature list
+#### Types
 - Enum types
 - Intersection types
 - Union types
 - Structural types
 - Typeclasses
 - Type lambdas
+
+#### Meta programming
+- Inlines
+- Compile time operations
+
+
 
 ### Usage
 This is a normal sbt project. You can compile code with `sbt compile`, run it with `sbt run`, and `sbt console` will start a Scala 3 REPL.
