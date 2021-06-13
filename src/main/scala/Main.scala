@@ -10,8 +10,11 @@ import types.*
     IntersectionTypes,
     UnionTypes,
     Typeclasses,
+    EnumTypes,
+    StructuralTypes,
+    TypeLambdas,
   
-  ) foreach { feature =>
+  ).zipWithIndex.foreach { (feature, i) =>
     println(s"\n>> Testing ${feature.name}")
     feature.test()
   }
