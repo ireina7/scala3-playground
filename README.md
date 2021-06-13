@@ -1,7 +1,14 @@
-## sbt project compiled with Scala 3
+## My personal playground of Scala3!
+
+### Feature list
+- Enum types
+- Intersection types
+- Union types
+- Structural types
+- Typeclasses
+- Type lambdas
 
 ### Usage
-
 This is a normal sbt project. You can compile code with `sbt compile`, run it with `sbt run`, and `sbt console` will start a Scala 3 REPL.
 
 For more information on the sbt-dotty plugin, see the
