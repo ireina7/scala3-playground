@@ -1,5 +1,7 @@
 ## My personal playground of Scala3!
 
+![Scala3](./img/scala3.png)
+
 ### Feature list
 #### Types
 - Enum types
