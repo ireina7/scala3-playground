@@ -46,6 +46,7 @@ given Eq[Nat] with
     case (Nat.Succ(x), Nat.Succ(y)) => equal(x, y)
     case _ => false
 
+
 given Ord[Nat] with
   def less(x: Nat, y: Nat) = (x, y) match
     case (Nat.Zero, Nat.Zero) => false
