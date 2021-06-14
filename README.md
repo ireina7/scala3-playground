@@ -10,6 +10,7 @@
 - Structural types
 - Typeclasses
 - Type lambdas
+- Dependent Path Type
 - Opaque types
 
 #### Meta programming
@@ -23,6 +24,10 @@
 #### Miscellaneous
 - Universal apply methods
 - Export clauses
+- Extension methods
+- Auto Parameter Tupling
+- Multiversal Equality
+- Pattern Matching
 
 
 ### Usage

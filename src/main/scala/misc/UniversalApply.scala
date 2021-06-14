@@ -6,7 +6,7 @@ class StringEx(s: String):
 
 object UniversalApply extends playground.Test("Universal Apply Methods"):
   override def test() = {
-    val abc = StringEx("abc")  
+    val abc = StringEx("abc")
     val empty = StringEx()
     println(abc)
   }

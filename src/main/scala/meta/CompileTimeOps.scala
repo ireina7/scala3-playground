@@ -61,7 +61,6 @@ import scala.compiletime.summonFrom
 
 
 
-
 object CompileTimeOps extends playground.Test("Compile time operations") {
   override def test(): Unit = {
     //fail("error")

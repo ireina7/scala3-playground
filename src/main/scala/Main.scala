@@ -4,6 +4,7 @@ package playground
 def runTests() = 
 
   import types.*
+  import context.*
   import meta.*
   import syntax.*
   import misc.*
@@ -15,7 +16,11 @@ def runTests() =
     EnumTypes,
     StructuralTypes,
     TypeLambdas,
+    DependentPathType,
     OpaqueTypes,
+
+    //===== Contextual abstraction =====//
+    Conversions,
 
     //===== Meta programming =====//
     Inlines,
@@ -28,8 +33,14 @@ def runTests() =
     //===== Miscs =====//
     UniversalApply,
     Exports,
+    ExtensionMethod,
+    AutoParamTupling,
+    KotlinSimulation,
+    MultiversalEquality,
+    PatternMatching,
   
   ).zipWithIndex.foreach { (feature, i) =>
+
     println(s"\n>> Testing ${feature.name}")
     feature.test()
   }

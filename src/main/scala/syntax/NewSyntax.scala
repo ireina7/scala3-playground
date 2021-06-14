@@ -14,7 +14,7 @@ object NewSyntax extends playground.Test("NewSyntax"):
 
     def newMatchingSyntax(x: Int) = 
         x match
-        case 1 => "one"
+            case 1 => "one"
             case 0 => "zero"
             case _ => "num"
     end newMatchingSyntax
