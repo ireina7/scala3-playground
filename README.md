@@ -8,11 +8,19 @@
 - Structural types
 - Typeclasses
 - Type lambdas
+- Opaque types
 
 #### Meta programming
 - Inlines
 - Compile time operations
 - Macros
+
+#### Syntax
+- New syntax
+
+#### Miscellaneous
+- Universal apply methods
+- Export clauses
 
 
 ### Usage
