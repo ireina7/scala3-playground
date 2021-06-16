@@ -25,6 +25,7 @@ object UnionTypes extends playground.Test("Union types") {
         case Success(d) => Right(d)
     }
 
+
     override def test(): Unit = {
 
         val divisionResultSuccess: DivisionResult = safeDivide(4, 2)
@@ -44,3 +45,6 @@ object UnionTypes extends playground.Test("Union types") {
         println(emptyList)
     }
 }
+
+
+
