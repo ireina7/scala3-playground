@@ -22,15 +22,65 @@ private def evalExpr(e: Expr[Int])(using Quotes): Expr[Int] = e match
 
 
 
+object Debug:
+  import scala.quoted.*
+
+  inline def hello(): Unit = println("Hello, world!")
+  
+  // -- 
+  
+  inline def debugSingle(inline expr: Any): Unit = ${debugSingleImpl('expr)} 
+  
+  private def debugSingleImpl(expr: Expr[Any])(using Quotes): Expr[Unit] =
+    '{ println("Value of " + ${Expr(expr.show)} + " is " + $expr) }
+  
+  // --
+
+  inline def debug(inline exprs: Any*): Unit = ${debugImpl('exprs)}
+
+  private def debugImpl(exprs: Expr[Seq[Any]])(using q: Quotes): Expr[Unit] =
+    import q.reflect._
+
+    def showWithValue(e: Expr[_]): Expr[String] = '{${Expr(e.show)} + " = " + $e}
+  
+    val stringExps: Seq[Expr[String]] = exprs match 
+      case Varargs(es) =>
+        es.map { e =>
+          e.asTerm match {
+            case Literal(c: Constant) => Expr(c.value.toString)
+            case _ => showWithValue(e)
+          }
+        }
+      case e => List(showWithValue(e))
+  
+    val concatenatedStringsExp = stringExps.reduceOption((e1, e2) => '{$e1 + ", " + $e2}).getOrElse('{""})
+    '{println($concatenatedStringsExp)}
 
 
-object Macros extends playground.Test("Macros") {
 
-  override def test() = {
-    //playWithExpr('{ 1 })
-    Debug.debugSingle({
-      val x = 3
-      x * 7
-    })
+object Macros:
+
+  inline def assert(inline expr: Boolean): Unit =
+    ${ assertImpl('expr) }
+
+  def assertImpl(expr: Expr[Boolean])(using Quotes) =
+    val failMsg: Expr[String] = Expr("failed assertion: " + expr.show)
+    '{ if !($expr) then throw new AssertionError($failMsg) }
+
+  def testQuotesImpl()(using Quotes) = {
+    val expr = Expr("Hello, compiler!")
+    println(expr.show)
+    '{ }
   }
-}
+
+  inline def testQuotes() = 
+    ${ testQuotesImpl() }
+
+  // This is indeed evil. When calling me, I will shut down the entire `scalac` at compile time
+  inline def evil: Unit = ${ evilImpl }
+  
+  def evilImpl(using Quotes): Expr[Unit] = 
+    System.exit(0)
+    '{ }
+
+end Macros

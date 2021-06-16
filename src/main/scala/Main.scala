@@ -25,7 +25,7 @@ def runTests() =
     //===== Meta programming =====//
     Inlines,
     CompileTimeOps,
-    Macros,
+    TestMacros,
 
     //===== Syntax =====//
     NewSyntax,
@@ -48,7 +48,9 @@ end runTests
 
 
 
+
 @main def hello: Unit =
+
   println("Hello Scala3!")
   println("> Running Scala3 features...")
   runTests()
