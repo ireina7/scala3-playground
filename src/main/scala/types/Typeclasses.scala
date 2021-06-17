@@ -58,7 +58,7 @@ given Ord[Nat] with
 def less[T: Ord](x: T, y: T) = x < y
 def bad[T: Ord](x: T, y: T) = x =/= y
 
-
+//summon[Ord[Nat]]
 
 trait Functor[F[_]]:
   extension [A](fa: F[A])

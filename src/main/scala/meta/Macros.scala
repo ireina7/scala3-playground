@@ -1,7 +1,7 @@
 package playground.meta
 
 import scala.quoted.*
-
+//import scala.quoted.staging
 
 def playWithExpr(e: Expr[Int])(using Quotes) = 
   val expr: Expr[Int] = '{ 1 }
@@ -73,6 +73,32 @@ object Macros:
     '{ }
   }
 
+  def testStringImpl(s: Expr[String])(using Quotes): Expr[Color] = {
+    s.value match
+      case Some(ss) => {
+        println(s"Transforming $ss...")
+        '{ parseStringToColor($s) }
+      }
+      case _ => {
+        println(s.show)
+        '{Color.Blue}
+      }
+  }
+
+  enum Color:
+    case Red, Green, Blue
+  
+  def parseStringToColor(s: String): Color = 
+    s match
+      case "r" => Color.Red
+      case "g" => Color.Green
+      case "b" => Color.Blue
+
+
+
+  inline def testString(inline s: String) = 
+    ${ testStringImpl('s) }
+
   inline def testQuotes() = 
     ${ testQuotesImpl() }
 
@@ -81,6 +107,6 @@ object Macros:
   
   def evilImpl(using Quotes): Expr[Unit] = 
     System.exit(0)
-    '{ }
+    '{ () }
 
 end Macros

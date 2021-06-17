@@ -18,5 +18,13 @@ object TestMacros extends playground.Test("Macros") {
     val x = 1
     Macros.assert(x != 0)
     Macros.testQuotes()
+
+    import Macros.Color
+    given Conversion[String, Color] with
+      override inline def apply(s: String): Color = Macros.testString(s)
+    
+    val i: Color = "r"
+    println(i)
+    //Macros.evil
   }
 }
