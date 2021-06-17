@@ -62,7 +62,20 @@ def testTransparent() =
 
 
 
+trait Logger:
+  def log(x: Any): Unit
 
+class PrintLogger extends Logger:
+  inline def log(x: Any): Unit = {
+    //assert(1 == 0)
+    println(x)
+  }
+
+trait InlineLogger:
+  inline def log(inline x: Any): Unit
+
+class PrintInlineLogger extends InlineLogger:
+  inline def log(inline x: Any): Unit = println(x)
 
 
   
@@ -72,5 +85,13 @@ object Inlines extends playground.Test("Inlines") {
   override def test(): Unit = {
     testRecursiveInlines()
     testTransparent()
+
+    val printLogger: PrintLogger = PrintLogger()
+    val logger: Logger = PrintLogger()
+    logger.log("This is not inlined at compile time")
+    printLogger.log("ok, I'm inlined at compile time")
+
+    val inlineLogger: PrintInlineLogger = PrintInlineLogger()
+    inlineLogger.log("ok")
   }
 }

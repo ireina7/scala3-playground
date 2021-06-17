@@ -55,7 +55,5 @@ end runTests
   println("> Running Scala3 features...")
   runTests()
 
-  //val expr = scala.quoted.Expr(1)
-
 end hello
 

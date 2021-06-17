@@ -1,6 +1,6 @@
 package playground.meta
 
-//import 
+import scala.language.implicitConversions
 
 
 object TestMacros extends playground.Test("Macros") {
@@ -23,8 +23,10 @@ object TestMacros extends playground.Test("Macros") {
     given Conversion[String, Color] with
       override inline def apply(s: String): Color = Macros.testString(s)
     
-    val i: Color = "r"
+    val i: Color = "g"
     println(i)
     //Macros.evil
   }
 }
+
+
