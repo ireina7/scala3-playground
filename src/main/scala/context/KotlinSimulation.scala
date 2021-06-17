@@ -8,7 +8,7 @@ package playground.misc
 object Kotlin {
   class Ctx[T](val x: T) extends AnyVal
 
-  def fun[T, U](fn: Ctx[T] ?=> U)(x: T): U = fn(using new Ctx(x))
+  def fun[T, U](fn: Ctx[T] ?=> U)(x: T): U = fn(using Ctx(x))
   def it[T](using ctx: Ctx[T]) = ctx.x
 }
 

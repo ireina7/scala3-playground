@@ -18,6 +18,10 @@
 - [Compile time operations](./src/main/scala/meta/CompileTimeOps.scala)
 - [Macros](./src/main/scala/meta/Macros.scala)
 
+#### Contextual abstraction
+- [Implicit conversions](./src/main/scala/context/Conversions.scala)
+- [Contextual type](./src/main/scala/context/KotlinSimulation.scala)
+
 #### Syntax
 - [New syntax](./src/main/scala/syntax/NewSyntax.scala)
 

@@ -21,6 +21,7 @@ def runTests() =
 
     //===== Contextual abstraction =====//
     Conversions,
+    KotlinSimulation,
 
     //===== Meta programming =====//
     Inlines,
@@ -35,7 +36,6 @@ def runTests() =
     //Exports,
     ExtensionMethod,
     AutoParamTupling,
-    KotlinSimulation,
     MultiversalEquality,
     PatternMatching,
     Wildcards,
