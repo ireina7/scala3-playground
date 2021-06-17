@@ -22,9 +22,11 @@ object TestMacros extends playground.Test("Macros") {
     import Macros.Color
     given Conversion[String, Color] with
       override inline def apply(s: String): Color = Macros.testString(s)
+      //override def unapply(s: String): Option[String] = Some(s)
     
-    val i: Color = "g"
-    println(i)
+    val color: Color = "g"
+    println(color)
+
     //Macros.evil
   }
 }

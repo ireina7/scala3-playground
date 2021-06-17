@@ -32,12 +32,13 @@ def runTests() =
 
     //===== Miscs =====//
     UniversalApply,
-    Exports,
+    //Exports,
     ExtensionMethod,
     AutoParamTupling,
     KotlinSimulation,
     MultiversalEquality,
     PatternMatching,
+    Wildcards,
   
   ).zipWithIndex.foreach { (feature, i) =>
 

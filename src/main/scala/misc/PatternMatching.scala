@@ -26,42 +26,44 @@ object PatternMatching extends playground.Test("Pattern Matching") {
             def productElement(n: Int): Any = ???
         }
 
-        object Person {
+        object Person:
             def unapply(a: (String, Int)): Person = new Person(a._1, a._2)
-        }
-
     }
 
     object seqPattern {
 
         // adapted from http://danielwestheide.com/blog/2012/11/28/the-neophytes-guide-to-scala-part-2-extracting-sequences.html
-        object Names {
-            def unapplySeq(name: String): Option[Seq[String]] = {
+        object Names:
+            def unapplySeq(name: String): Option[Seq[String]] =
                 val names = name.trim.split(" ")
                 if (names.size < 2) None
                 else Some(names.last :: names.head :: names.drop(1).dropRight(1).toList)
-            }
-        }
-
     }
 
     object namePattern {
 
-        class Name(val name: String) {
+        class Name(val name: String):
             def get: String = name
             def isEmpty = name.isEmpty
-        }
 
-        object Name {
+        object Name:
             def unapply(s: String): Name = new Name(s)
-        }
-
     }
+
+    object singlePattern {
+
+        class Nat(val x: Int):
+            def get: Int = x
+            def isEmpty = x < 0
+
+        object Nat:
+            def unapply(x: Int): Nat = new Nat(x)
+    }
+
 
     override def test(): Unit = {
 
         import booleanPattern._
-
         "even" match {
             case s @ Even() => println(s"$s has an even number of characters")
             case s => println(s"$s has an odd number of characters")
@@ -69,8 +71,8 @@ object PatternMatching extends playground.Test("Pattern Matching") {
 
         // http://dotty.epfl.ch/docs/reference/changed/vararg-patterns.html
         def containsConsecutive(list: List[Int]): Boolean = list match {
-            case List(a, b, xs: _ *) => if (a == b) true else containsConsecutive(b :: xs.toList)
-            case List(a, _ : _*) => false
+            case List(a, b, xs*) => if (a == b) true else containsConsecutive(b :: xs.toList)
+            case List(a, _*) => false
             case Nil => false
         }
 
@@ -85,7 +87,7 @@ object PatternMatching extends playground.Test("Pattern Matching") {
         import seqPattern._
 
         def greet(fullName: String) = fullName match {
-            case Names(lastName, firstName, _: _*) => "Good morning, " + firstName + " " + lastName + "!"
+            case Names(lastName, firstName, _*) => s"Good morning, $firstName $lastName!"
             case _ => "Welcome! Please make sure to fill in your name!"
         }
 
@@ -99,5 +101,9 @@ object PatternMatching extends playground.Test("Pattern Matching") {
             case _ => println("empty name")
         }
 
+        import singlePattern._
+        5 match
+            case Nat(n) => println(s"$n is a natural number")
+            case _      => ()
     }
 }
