@@ -67,11 +67,15 @@ object Macros:
     val failMsg: Expr[String] = Expr("failed assertion: " + expr.show)
     '{ if !($expr) then throw new AssertionError($failMsg) }
 
+
+  
   def testQuotesImpl()(using Quotes) = {
     val expr = Expr("Hello, compiler!")
     println(expr.show)
     '{ }
   }
+
+
 
   def testStringImpl(s: Expr[String])(using Quotes): Expr[Color] = {
     s.value match
@@ -102,6 +106,8 @@ object Macros:
   inline def testQuotes() = 
     ${ testQuotesImpl() }
 
+
+  
   // This is indeed evil. When calling me, I will shut down the entire `scalac` at compile time
   inline def evil: Unit = ${ evilImpl }
   

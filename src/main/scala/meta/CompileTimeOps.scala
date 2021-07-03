@@ -16,6 +16,11 @@ transparent inline def toIntC[N]: Int =
     case 0        => 0
     case _: S[n1] => 1 + toIntC[n1]
 
+
+/**
+ * This is truely useful since you can make decisions purely 
+ * based on type parameters.
+*/
 inline def defaultValue[T] =
   inline erasedValue[T] match
     case _: Byte    => Some(0: Byte)
@@ -58,8 +63,6 @@ val multiplication: 3 * 5 = 15
  * Implicit selection
 */
 import scala.compiletime.summonFrom
-
-
 
 object CompileTimeOps extends playground.Test("Compile time operations") {
   override def test(): Unit = {

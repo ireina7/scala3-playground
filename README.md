@@ -1,5 +1,7 @@
 ## My personal playground of Scala3!
 
+The repo is in a mess.
+
 ![Scala3](./img/scala3-icon.png)
 
 ### Feature list
@@ -24,6 +26,7 @@
 
 #### Syntax
 - [New syntax](./src/main/scala/syntax/NewSyntax.scala)
+- [Infix syntax](./src/main/scala/syntax/Infix.scala)
 
 #### Miscellaneous
 - [Universal apply methods](./src/main/scala/misc/UniversalApply.scala)

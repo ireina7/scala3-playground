@@ -4,7 +4,7 @@ package playground.types
 /**
   * Structural Types: https://dotty.epfl.ch/docs/reference/changed-features/structural-types.html
   */
-object StructuralTypes extends playground.Test("StructuralTypes") {
+object StructuralTypes extends playground.Test("Structural Types") {
 
     case class Record(elems: (String, Any)*) extends Selectable {
         def selectDynamic(name: String): Any = elems.find(_._1 == name).get._2

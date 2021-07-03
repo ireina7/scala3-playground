@@ -31,6 +31,7 @@ def runTests() =
 
     //===== Syntax =====//
     NewSyntax,
+    Infix,
 
     //===== Miscs =====//
     UniversalApply,
@@ -50,19 +51,11 @@ end runTests
 
 
 
-class Infix(name: String):
-  def op(comment: String): Unit = 
-    println(s"$name: $comment")
-
-
 @main def hello: Unit =
 
   println("Hello Scala3!")
   println("> Running Scala3 features...")
   runTests()
-
-  val i = Infix("i")
-  i op "This is me!"
 
 end hello
 

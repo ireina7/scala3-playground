@@ -3,7 +3,7 @@ package playground.types
 
 object TypeInference extends playground.Test("Type inference"):
 
-  def test(): Unit = {
+  override def test(): Unit = {
     def test0[A, B](a: A, f: A => B): B = f(a)
     def test1[A, B](a: A)(f: A => B): B = f(a)
 

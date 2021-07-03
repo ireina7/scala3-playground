@@ -1,4 +1,4 @@
-package playground.misc
+package playground.context
 
 /**
  * This interesting example is from one of my friend

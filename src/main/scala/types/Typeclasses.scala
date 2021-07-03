@@ -99,11 +99,35 @@ def testMonad[F[_]: Applicative, A, B](fx: F[A]): F[B] =
 
 
 
+
+
+
+
+/**
+ * Trying to create the `Default` typeclass
+*/
+trait Default[T] {
+  def default: T
+}
+
+object Default {
+  def default[T](using ev: Default[T]): T = ev.default
+}
+
+
+given Default[Int] with
+  def default = 0
+
+
 object Typeclasses extends playground.Test("Typeclasses") {
 
   override def test() = {
     import Nat.*
     println("Testing Nats!")
     println(less(Succ(Zero) - Succ(Zero), Succ(Zero)))
+
+    
+    val i: Int = Default.default // Nice !
+    println(i)
   }
 }

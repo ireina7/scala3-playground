@@ -24,7 +24,7 @@ object TestMacros extends playground.Test("Macros") {
       override inline def apply(s: String): Color = Macros.testString(s)
       //override def unapply(s: String): Option[String] = Some(s)
     
-    val color: Color = "g"
+    val color: Color = "r"
     println(color)
 
     //Macros.evil
